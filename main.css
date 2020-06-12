@@ -118,3 +118,16 @@ input[type='text']{
     padding-left: 0;
     list-style-type: none;
 }
+.single-meal ul li{
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: white;
+    display: inline-block;
+    color: #2d2013;
+    font-size: 14px;
+    font-weight: bold;
+    padding:5px;
+    margin: 0 8px 8px 0
+
+
+}
