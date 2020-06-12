@@ -84,6 +84,7 @@ const  search = document.getElementById('search'),
 
     //Function TO GET RANDOM MEAL
     function getRandomMeal(meal){
+        mealsEl.innerHTML= ''
         fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
         .then(res=>res.json())
         .then(data=> {
