@@ -45,7 +45,7 @@ const  search = document.getElementById('search'),
            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
            .then(res=> res.json())
            .then(data =>{
-            const meal = data.meal[0]
+            const meal = data.meals[0]
             addMealToDom(meal)
 
            })
@@ -53,8 +53,47 @@ const  search = document.getElementById('search'),
 
        //Func to add the meal to dom 
        function addMealToDom(meal){
+        const ingredients = [];
+        for(let i=1; i<=20; i++){
+            if (meal[`strIngredient${i}`]){
+                ingredients.push(`${meal[`strIngredient${i}`]} : ${meal[`strMeasure${i}`]}`)
 
-       }
+            }else break;
+        }
+
+       
+       singleMealElm.innerHTML=`
+       <div class='single-meal'>
+       <h1>${meal.strMeal}</h1>
+       <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+       <div class="single-meal-info">
+       ${meal.strCategory ? `<h2>${meal.strCategory}</h2>` :''}
+       ${meal.strArea ? `<h2>${meal.strArea}</h2>` :''}
+       </div>
+       <div class ="main">
+       <p>${meal.strInstructions}</p>
+       <h1>INGREDIENTS : </h1>
+       <ul>
+       ${ingredients.map(ing=>`<li>${ing}</li>`).join('')}
+       </ul>
+
+       </div>
+       </div>
+       `
+    }
+
+    //Function TO GET RANDOM MEAL
+    function getRandomMeal(meal){
+        fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+        .then(res=>res.json())
+        .then(data=> {
+            const meal = data.meals[0]
+            addMealToDom(meal)
+
+        })
+    }
+
+
        //Event listners:
        submit.addEventListener('submit', searchMeal)
        mealsEl.addEventListener('click', e =>{
@@ -68,6 +107,8 @@ const  search = document.getElementById('search'),
              const mealId= mealinfo.getAttribute('data-mealid')
              getMealbyId(mealId)
           }
+
+          mealsEl.innerHTML=''
        })
-       
+       random.addEventListener('click', getRandomMeal)
        

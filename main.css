@@ -8,7 +8,7 @@ color: #ffffff;
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-h1.mealhead{
+h1{
     margin-right: 20px;
     padding-top: 25px;
     font-family: 'Halant', serif;
@@ -107,4 +107,10 @@ input[type='text']{
 }
 .meal:hover .meal-info{
     opacity: 1;
+}
+
+.single-meal img{
+    height: 400px;
+    width: 500px;
+    border-radius: 2px;
 }
