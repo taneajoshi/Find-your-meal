@@ -40,6 +40,21 @@ const  search = document.getElementById('search'),
 
        
        }
+       //FETCHING MEAL BY ID FUNC
+       function getMealbyId (mealId){
+           fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+           .then(res=> res.json())
+           .then(data =>{
+            const meal = data.meal[0]
+            addMealToDom(meal)
+
+           })
+       }
+
+       //Func to add the meal to dom 
+       function addMealToDom(meal){
+
+       }
        //Event listners:
        submit.addEventListener('submit', searchMeal)
        mealsEl.addEventListener('click', e =>{
@@ -51,7 +66,7 @@ const  search = document.getElementById('search'),
           )
           if(mealinfo){
              const mealId= mealinfo.getAttribute('data-mealid')
-             console.log(mealId)
+             getMealbyId(mealId)
           }
        })
        
